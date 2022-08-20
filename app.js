@@ -10,6 +10,9 @@ app.set('view engine', 'hbs')
 
 
 
+//==========setting static files
+app.use(express.static('public'))
+
 //require router引入routes就會自動去找目錄下index的檔案 為何(怎樣才會去去尋找？)
 const routes = require('./routes')
 app.use(routes)
