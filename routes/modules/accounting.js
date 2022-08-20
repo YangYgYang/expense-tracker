@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const ACCschema = require('../../models/accounting')
 
 
 
@@ -8,7 +9,10 @@ router.get('/create', (req, res) => {
 })
 
 router.post('/create', (req, res) => {
-    console.log(req.body)
+    let accounting = req.body
+    ACCschema.create(accounting)
+        .then(() => res.redirect('/'))
+        .catch(error => console.log(error))
 })
 
 

@@ -10,10 +10,10 @@ const accountingSchema = new Schema({
         default: Date.now
     },
     category: {
-        required: true
+        type: String
     },
     subTotal: {
-        required: true
+        type: Number
     }
 
 })
