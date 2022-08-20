@@ -14,6 +14,11 @@ require('./config/mongoose')
 //==========setting static files
 app.use(express.static('public'))
 
+//==========datepicker
+// const datePicker = require('flowbite-datepicker/Datepicker')
+// const dateRangePickerEl = document.getElementById('dateRangePickerId');
+// new DateRangePicker(datepickerEl);
+
 //require router引入routes就會自動去找目錄下index的檔案 為何(怎樣才會去去尋找？)
 const routes = require('./routes')
 app.use(routes)
