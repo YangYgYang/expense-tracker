@@ -14,10 +14,10 @@ require('./config/mongoose')
 //==========setting static files
 app.use(express.static('public'))
 
-//==========datepicker
-// const datePicker = require('flowbite-datepicker/Datepicker')
-// const dateRangePickerEl = document.getElementById('dateRangePickerId');
-// new DateRangePicker(datepickerEl);
+//==========require body parser
+const bodyParser = require('body-parser')
+    //extended若設定false，會使得req.body 物件並非JS平常的物件，沒有prototype
+app.use(bodyParser.urlencoded({ extended: true }))
 
 //require router引入routes就會自動去找目錄下index的檔案 為何(怎樣才會去去尋找？)
 const routes = require('./routes')

@@ -5,19 +5,19 @@
         <div class="d-flex">
             <div class="input-group-text">支出項目：</div>
             <div class="input-group">
-                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <input type="text" class="form-control" name="item" value="" aria-label="Amount (to the nearest dollar)">
             </div>  
         </div>
         <div class="d-flex">
             <div class="input-group-text">日期：</div>
             <div class="input-group">
-                <input type="date" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <input type="date" class="form-control" name="date" value="" aria-label="Amount (to the nearest dollar)">
             </div>  
         </div>
         <div class="d-flex">
             <div class="input-group-text">類別：</div>
             <div class="input-group">        
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" name="category" value="" aria-label="Default select example">
                     {{!-- <option selected>Open this select menu</option> --}}
                     <option value="1">家居物業</option>
                     <option value="2">交通出行</option>
@@ -31,7 +31,7 @@
             <div class="input-group-text">金額：</div>
             <div class="input-group">
                 <span class="input-group-text">$</span>
-                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <input type="text" class="form-control" name="subTotal" value="" aria-label="Amount (to the nearest dollar)">
             </div>  
         </div>
 
