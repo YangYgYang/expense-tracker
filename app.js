@@ -19,6 +19,10 @@ const bodyParser = require('body-parser')
     //extended若設定false，會使得req.body 物件並非JS平常的物件，沒有prototype
 app.use(bodyParser.urlencoded({ extended: true }))
 
+//==========setting PUT DELETE method in HTML
+const methodOverride = require('method-override')
+app.use(methodOverride('_method'))
+
 //require router引入routes就會自動去找目錄下index的檔案 為何(怎樣才會去去尋找？)
 const routes = require('./routes')
 app.use(routes)
