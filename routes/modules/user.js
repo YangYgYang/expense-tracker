@@ -14,6 +14,13 @@ router.post('/login', (req, res) => {
     USERschema.findOne({ email: loginData.email })
         .then((user) => {
             if (loginData.password === user.password) {
+                const token = jwt.sign(user.email, 'SECRET');
+                console.log(token)
+                    // res.json({
+                    //     token
+                    // });
+
+                res.cookie('token', token);
                 res.redirect('/')
             } else {
                 res.redirect('register')
