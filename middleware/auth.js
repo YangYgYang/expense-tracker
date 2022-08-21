@@ -9,22 +9,34 @@ const authentication = (req, res, next) => {
     }
     let token = req.headers.cookie
     console.log('驗證這邊的token', token.slice(6))
-    jwt.verify(token, 'SECRET', (err, payload) => {
-        if (err) {
-            console.log('錯誤的亮牌', err); // 驗證失敗回傳錯誤
-            return res.redirect('/user/login')
-        } else {
-            console.log(payload);
+    jwt.verify(token, 'SECRET')
+        .then((decoded) => {
+            console.log(decoded)
             return next()
-                // function(err, decoded) {
-                //     if (err) {
-                //         return res.redirect('/login')
-                //             // return res.status(401).json({ message: 'Unauthorized!' })
-                //     } else {
-                //         next()
-                //     }
-                // });
-        }
-    })
+        })
+        .catch(error => {
+            console.log(error)
+            return res.redirect('/login')
+        })
+
+
+
+    // (err, payload) => {
+    //     if (err) {
+    //         console.log('錯誤的亮牌', err); // 驗證失敗回傳錯誤
+    //         return res.redirect('/user/login')
+    //     } else {
+    //         console.log(payload);
+    //         return next()
+
+    // function(err, decoded) {
+    //     if (err) {
+    //         return res.redirect('/login')
+    //             // return res.status(401).json({ message: 'Unauthorized!' })
+    //     } else {
+    //         next()
+    //     }
+    // });
 }
+
 module.exports = authentication
