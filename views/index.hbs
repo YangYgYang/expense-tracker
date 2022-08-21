@@ -1,5 +1,5 @@
-<div class="container">
-    <div>
+<div class="container-content">
+    <div class="category ">
       <select class="form-select" aria-label="Default select example">
           {{!-- <option selected>Open this select menu</option> --}}
           <option value="1">家居物業</option>
@@ -9,9 +9,9 @@
           <option value="5">其他</option>
       </select>
     </div>
-    <div>
-        <a>總金額：</a>
-        <a id="totalAmount">25600</a>
+    <div class="total-amount-all">
+        <span class="total-amount-title">總金額：</span>
+        <span id="total-amount">25600</span>
     </div>
 
     <div>
@@ -30,8 +30,7 @@
                   <span>${{this.subTotal}}</span>
               </div>
               <div>
-              <a class="btn btn-secondary" href="#">detail</a>
-              <a class="btn btn-success" href="#">edit</a>
+              <a class="btn btn-success" href="/accounting/{{this._id}}/edit">edit</a>
               <form action="/accounting/{{this._id}}?_method=DELETE" method="post" style="display: inline;">
                 <button class="btn btn-danger" name="_method" type="submit">delete</button>
               </form>
@@ -41,8 +40,8 @@
         </li>
 {{/each}}        
       </ul>
-      <a class="btn btn-light" href="/accounting/create">新增支出</a>
-
     </div>
-
+    <div>
+      <a class="btn btn-light mt-4" href="/accounting/create">新增支出</a>
+    </div>
 </div>
