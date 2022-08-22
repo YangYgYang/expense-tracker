@@ -13,13 +13,16 @@ router.post('/login', (req, res) => {
     const loginData = req.body
     USERschema.findOne({ email: loginData.email })
         .then((user) => {
+            console.log('看一下user是什麼東西', user)
+            let userData = {}
+            userData.email = user.email
             if (loginData.password === user.password) {
-                const token = jwt.sign(user, 'SECRET');
-                console.log(token)
+                const token = jwt.sign(userData, 'SECRET');
+                console.log('產生要放cookie的偷啃', token)
                 res.cookie('token', token);
                 res.redirect('/')
             } else {
-                res.redirect('register')
+                res.redirect('/user/register')
             }
         })
         .catch(error => console.log(error))
@@ -36,13 +39,14 @@ router.post('/register', (req, res) => {
         .then((user) => {
             if (!user) {
                 USERschema.create(registerData)
-                    .then((user) => res.redirect('/'))
-                    .catch(error => consoel.log(error))
+                    .then((user) => res.redirect('/user/login'))
+                    .catch(error => console.log(error))
             } else {
-                res.redirect('login')
+                console.log('登入後要進到login', )
+                res.redirect('/user/register')
             }
         })
-        .catch(error => consoel.log(error))
+        .catch(error => console.log(error))
 })
 
 module.exports = router

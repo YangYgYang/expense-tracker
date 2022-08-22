@@ -2,23 +2,17 @@ const jwt = require('jsonwebtoken')
 
 const authentication = (req, res, next) => {
     if (!req.headers.cookie) {
-        console.log(req.headers.cookie)
+        console.log('cookie裡面沒東西', req.headers.cookie)
             // console.log(req)
         console.log('驗證失敗')
         return res.redirect('/user/login')
     }
     let token = req.headers.cookie
     console.log('驗證這邊的token', token.slice(6))
-    jwt.verify(token, 'SECRET')
-        .then((decoded) => {
-            console.log(decoded)
-            return next()
-        })
-        .catch(error => {
-            console.log(error)
-            return res.redirect('/login')
-        })
-
+    jwt.verify(token.slice(6), 'SECRET', (err, decoded) => {
+        console.log(err)
+        return next()
+    })
 
 
     // (err, payload) => {
