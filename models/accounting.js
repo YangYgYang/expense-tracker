@@ -14,6 +14,12 @@ const accountingSchema = new Schema({
     },
     subTotal: {
         type: Number
+    },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+        index: true, //可加快 database搜尋速度(用index搜尋的意思)
+        required: true
     }
 
 })

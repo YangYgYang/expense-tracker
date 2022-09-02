@@ -1,36 +1,24 @@
 const jwt = require('jsonwebtoken')
 
 const authentication = (req, res, next) => {
-    if (!req.headers.cookie) {
-        console.log('cookie裡面沒東西', req.headers.cookie)
-            // console.log(req)
+    if (!req.cookies) {
         console.log('驗證失敗')
         return res.redirect('/user/login')
     }
-    let token = req.headers.cookie
-    console.log('驗證這邊的token', token.slice(6))
-    jwt.verify(token.slice(6), 'SECRET', (err, decoded) => {
+    let token = req.cookies.token
+    console.log('新裝的cookie', req.cookies)
+    console.log('驗證這邊的token', token)
+    jwt.verify(token, 'SECRET', (err, decoded) => {
+        if (err) {
+            res.clearCookie('token')
+            return res.redirect('/user/login')
+        }
+        req.user = decoded
+        console.log(decoded)
         console.log(err)
         return next()
     })
-
-
-    // (err, payload) => {
-    //     if (err) {
-    //         console.log('錯誤的亮牌', err); // 驗證失敗回傳錯誤
-    //         return res.redirect('/user/login')
-    //     } else {
-    //         console.log(payload);
-    //         return next()
-
-    // function(err, decoded) {
-    //     if (err) {
-    //         return res.redirect('/login')
-    //             // return res.status(401).json({ message: 'Unauthorized!' })
-    //     } else {
-    //         next()
-    //     }
-    // });
 }
+
 
 module.exports = authentication

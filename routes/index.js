@@ -6,9 +6,6 @@ const user = require('./modules/user')
 const authMiddleware = require('../middleware/auth')
 
 
-// router.use('/user', user)
-// router.use('/accounting', accounting)
-// router.use('/', home)
 router.use('/user', user)
 router.use('/accounting', authMiddleware, accounting)
 router.use('/', authMiddleware, home)

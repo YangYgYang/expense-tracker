@@ -14,6 +14,10 @@ require('./config/mongoose')
 //==========setting static files
 app.use(express.static('public'))
 
+const cookieParser = require('cookie-parser')
+
+app.use(cookieParser())
+
 //==========require body parser
 const bodyParser = require('body-parser')
     //extended若設定false，會使得req.body 物件並非JS平常的物件，沒有prototype
