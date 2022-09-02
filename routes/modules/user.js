@@ -23,7 +23,6 @@ router.post('/login', (req, res) => {
                 const payload = {
                     'user_id': user._id + '',
                     'user_name': user.name,
-                    'user_email': user.email,
                     'exp': timeNow
                 }
                 console.log('payload可以產生偷啃', user._id + '', )
