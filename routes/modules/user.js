@@ -30,7 +30,8 @@ router.post('/login', (req, res) => {
                 res.cookie('token', token);
                 res.redirect('/')
             } else {
-                res.redirect('/user/register', { message: "帳號或密碼錯誤！" })
+                req.flash(('success_msg', '您已成功登出！'))
+                res.redirect('/user/register')
             }
         })
         .catch(error => console.log(error))
@@ -71,6 +72,7 @@ router.post('/register', (req, res) => {
                     .catch(error => console.log(error))
             } else {
                 console.log('登入後要進到login')
+                req.flash('alert_msg', '您可能已經註冊過！')
                 res.redirect('/user/login')
             }
         })
@@ -78,6 +80,7 @@ router.post('/register', (req, res) => {
 })
 
 router.post('/logout', (req, res) => {
+    req.flash('success_msg', '您已成功登出！')
     res.clearCookie('token')
     return res.redirect('/user/login')
 })
