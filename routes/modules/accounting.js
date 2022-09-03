@@ -37,6 +37,18 @@ router.get('/:id/edit', (req, res) => {
     ACCschema.findOne({ _id: accountingID })
         .lean()
         .then((accounting) => {
+            dateValue = {
+                year: accounting.date.getFullYear(),
+                month: accounting.date.getMonth() + 1,
+                day: accounting.date.getDate()
+            }
+            if (dateValue.month < 10) {
+                dateValue.month = '0' + dateValue.month
+            }
+            if (dateValue.day < 10) {
+                dateValue.day = '0' + dateValue.day
+            }
+            accounting.date = `${dateValue.year}-${dateValue.month}-${dateValue.day}`
             res.render('edit', accounting)
         })
         .catch(error => console.log(error))

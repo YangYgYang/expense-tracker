@@ -75,7 +75,7 @@ router.post('/register', (req, res) => {
                     })
                     .catch(error => console.log(error))
             } else {
-                console.log('登入後要進到login')
+                // console.log('登入後要進到login')
                 req.flash('alert_msg', '您可能已經註冊過！')
                 res.redirect('/user/login')
             }
