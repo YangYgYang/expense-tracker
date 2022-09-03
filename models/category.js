@@ -6,11 +6,10 @@ const categorySchema = new Schema({
         required: true
     },
     categoryId: {
-        type: number,
+        type: Number,
         required: true
     }
 
 })
 
-//用todoSchema來產生一個名為"Todo"的Model。
 module.exports = mongoose.model('category', categorySchema)
