@@ -14,8 +14,18 @@ require('./config/mongoose')
 //==========setting static files
 app.use(express.static('public'))
 
-const cookieParser = require('cookie-parser')
+//==========connect-flash
+const flash = require('connect-flash')
+const session = require('express-session')
+app.use(session({
+    secret: 'sessionSecret',
+    resave: true,
+    saveUninitialized: true,
+}))
+app.use(flash())
 
+//==========get cookie
+const cookieParser = require('cookie-parser')
 app.use(cookieParser())
 
 //==========require body parser
