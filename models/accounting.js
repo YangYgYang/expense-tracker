@@ -7,7 +7,7 @@ const accountingSchema = new Schema({
     },
     date: {
         type: Date,
-        default: Date.now
+        default: new Date()
     },
     category: {
         type: String

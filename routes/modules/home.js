@@ -9,10 +9,16 @@ router.get('/', (req, res) => {
         .lean()
         .then((accData) => {
             let subTotals = 0
-            accData.forEach(acc => {
+            console.log(accData)
+            let finAccData = accData.map((acc) => {
                 subTotals += acc.subTotal
+                acc.date = {
+                    year: acc.date.getFullYear(),
+                    month: acc.date.getMonth() + 1,
+                    day: acc.date.getDate()
+                }
+                console.log(acc, typeof acc)
             })
-            console.log(subTotals)
             res.render('index', { accData, subTotals })
         })
         .catch(error => console.log(error))
