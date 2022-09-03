@@ -13,7 +13,6 @@ router.post('/login', (req, res) => {
     const loginData = req.body
     USERschema.findOne({ email: loginData.email })
         .then((user) => {
-            //這邊找回來的user有個userId會讓sign的第一個參數有問題
             if (user !== null && bcrypt.compareSync(loginData.password, user.password)) {
                 let userData = {}
                 let timeNow = (new Date().getTime()) / 1000 + 1800
@@ -27,11 +26,12 @@ router.post('/login', (req, res) => {
                 const token = jwt.sign(payload, 'SECRET');
                 res.cookie('token', token);
                 res.redirect('/')
-            } else if (!bcrypt.compareSync(loginData.password, user.password)) {
+            } else if (user !== null && !bcrypt.compareSync(loginData.password, user.password)) {
+                console.log('登入密碼錯誤！')
                 res.render('login', { error_msg: '帳號或密碼錯誤！' })
-            } else {
-                req.flash(('success_msg', '您已成功登出！'))
-                res.redirect('/user/register')
+            } else if (user === null) {
+                console.log('沒有這個登入帳號！')
+                res.render('login', { error_msg: '帳號或密碼錯誤！' })
             }
         })
         .catch(error => console.log(error))
