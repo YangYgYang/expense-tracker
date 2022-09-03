@@ -24,5 +24,4 @@ const accountingSchema = new Schema({
 
 })
 
-//用todoSchema來產生一個名為"Todo"的Model。
 module.exports = mongoose.model('accounting', accountingSchema)
