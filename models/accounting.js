@@ -9,7 +9,7 @@ const accountingSchema = new Schema({
         type: Date,
         default: new Date()
     },
-    category: {
+    categoryId: {
         type: String
     },
     subTotal: {
@@ -20,7 +20,8 @@ const accountingSchema = new Schema({
         ref: 'user',
         index: true, //可加快 database搜尋速度(用index搜尋的意思)
         required: true
-    }
+    },
+
 
 })
 

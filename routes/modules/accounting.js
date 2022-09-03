@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const ACCschema = require('../../models/accounting')
+const categorySchema = require('../../models/category')
 
 
 
@@ -10,7 +11,7 @@ router.get('/create', (req, res) => {
 
 router.post('/create', (req, res) => {
     let getAccounting = req.body
-        // console.log('印出帳本', getAccounting)
+    console.log('印出帳本', getAccounting)
     getAccounting.userId = req.user.user_id
     ACCschema.create(getAccounting)
         .then(() => res.redirect('/'))
@@ -57,9 +58,19 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id/edit', (req, res) => {
     let accountingID = req.params.id
     let getAccounting = req.body
+    console.log('編輯修改', getAccounting)
     ACCschema.update({ _id: accountingID }, getAccounting)
         .then(() => res.redirect('/'))
         .catch(error => console.log(error))
+})
+router.get('/:id/category', (req, res) => {
+    let accountingID = req.params.id
+    let getAccounting = req.body
+    console.log('分類', getAccounting)
+    console.log('分類路由哎滴', accountingID)
+        // ACCschema.findOne({ _id: accountingID })
+        //     .lean()
+        //     .then((acc))
 })
 
 

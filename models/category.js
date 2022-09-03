@@ -6,7 +6,7 @@ const categorySchema = new Schema({
         required: true
     },
     categoryId: {
-        type: Number,
+        type: String,
         required: true
     }
 

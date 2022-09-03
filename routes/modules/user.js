@@ -16,7 +16,7 @@ router.post('/login', (req, res) => {
             if (user !== null && bcrypt.compareSync(loginData.password, user.password)) {
                 let userData = {}
                 let timeNow = (new Date().getTime()) / 1000 + 1800
-                console.log(timeNow)
+                    // console.log(timeNow)
                 userData.email = user.email
                 const payload = {
                     'user_id': user._id + '',

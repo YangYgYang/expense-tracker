@@ -1,5 +1,6 @@
 <div class="container-content">
     <div class="category ">
+      <form action="/accounting/{{userid}}/category" method="get" name="category">
       <select class="form-select" aria-label="Default select example" value="none" >
           <option value="none" selected disabled hidden>選擇類別</option>
           <option value="1">家居物業</option>
@@ -8,6 +9,8 @@
           <option value="4">餐飲食品</option>
           <option value="5">其他</option>
       </select>
+      <button class="btn btn-danger" name="category" type="submit">search</button>
+      </form>
     </div>
     <div class="total-amount-all">
         <span class="total-amount-title">總金額：</span>

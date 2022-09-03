@@ -14,8 +14,8 @@ const authentication = (req, res, next) => {
             return res.redirect('/user/login')
         }
         req.user = decoded
-        console.log(decoded)
-        console.log(err)
+            // console.log(decoded)
+            // console.log(err)
         return next()
     })
 }

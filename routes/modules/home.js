@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
                     day: acc.date.getDate()
                 }
             })
-            res.render('index', { accData, subTotals })
+            res.render('index', { accData, subTotals, userid })
         })
         .catch(error => console.log(error))
 })
