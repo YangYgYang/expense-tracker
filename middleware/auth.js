@@ -8,7 +8,7 @@ const authentication = (req, res, next) => {
     let token = req.cookies.token
         // console.log('新裝的cookie', req.cookies)
         // console.log('驗證這邊的token', token)
-    jwt.verify(token, 'SECRET', (err, decoded) => {
+    jwt.verify(token, process.env.TOKENSECRET, (err, decoded) => {
         if (err) {
             res.clearCookie('token')
             return res.redirect('/user/login')

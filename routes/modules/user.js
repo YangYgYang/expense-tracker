@@ -23,7 +23,7 @@ router.post('/login', (req, res) => {
                     'user_name': user.name,
                     'exp': timeNow
                 }
-                const token = jwt.sign(payload, 'SECRET');
+                const token = jwt.sign(payload, process.env.TOKENSECRET);
                 res.cookie('token', token);
                 res.redirect('/')
             } else if (user !== null && !bcrypt.compareSync(loginData.password, user.password)) {
