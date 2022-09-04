@@ -63,15 +63,7 @@ router.put('/:id/edit', (req, res) => {
         .then(() => res.redirect('/'))
         .catch(error => console.log(error))
 })
-router.get('/:id/category', (req, res) => {
-    let accountingID = req.params.id
-    let getAccounting = req.body
-    console.log('分類', getAccounting)
-    console.log('分類路由哎滴', accountingID)
-        // ACCschema.findOne({ _id: accountingID })
-        //     .lean()
-        //     .then((acc))
-})
+
 
 
 

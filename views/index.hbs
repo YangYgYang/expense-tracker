@@ -1,16 +1,19 @@
 <div class="container-content">
     <div class="category ">
-      <form action="/accounting/{{userid}}/category" method="get" name="category">
-      <select class="form-select" aria-label="Default select example" value="none" >
-          <option value="none" selected disabled hidden>選擇類別</option>
+
+      {{!-- <form action="/accounting/{{userid}}/category" method="get" > --}}
+      <form method="get" >
+      <select onchange="this.form.submit()" class="form-select" aria-label="Default select example" name="categoryId">
+          <option selected disabled hidden>選擇類別</option>
+          <option value="0">不分類別</option>
           <option value="1">家居物業</option>
           <option value="2">交通出行</option>
           <option value="3">休閒娛樂</option>
           <option value="4">餐飲食品</option>
           <option value="5">其他</option>
       </select>
-      <button class="btn btn-danger" name="category" type="submit">search</button>
       </form>
+
     </div>
     <div class="total-amount-all">
         <span class="total-amount-title">總金額：</span>
@@ -19,7 +22,7 @@
 
     <div>
       <ul class="list-group">
-{{#each accData}}
+{{#each accDataFin}}
         <li class="list-group-item">
           <div class="row">
             <div class="d-flex justify-content-between">
@@ -48,3 +51,13 @@
       <a class="btn btn-light mt-4" href="/accounting/create">新增支出</a>
     </div>
 </div>
+
+<script>
+    document.querySelectorAll('.form-select option')
+    .forEach(e => { 
+        if(e.value == {{categoryId}})
+        e.setAttribute('selected', 'selected') 
+        })
+</script>
+
+
