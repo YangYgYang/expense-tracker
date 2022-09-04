@@ -13,13 +13,12 @@ router.get('/', async(req, res) => {
         .then((user) => {
             username = user.name + "的"
         })
+        .catch(error => console.log(error))
         // console.log('進入首頁後', userid)
     await ACCschema.find({ userId: userid })
         .lean()
         .then((accData) => {
-            console.log('到底有沒有東西', getAccounting)
             if (getAccounting.categoryId == 'none' || getAccounting.categoryId === undefined) {
-                console.log('有進到這邊嗎')
                 accDataFin = accData
             } else {
                 accDataFin = accData.filter(e => e.categoryId === getAccounting.categoryId)
@@ -34,7 +33,6 @@ router.get('/', async(req, res) => {
                     day: acc.date.getDate()
                 }
             })
-            console.log('誰的記長笨哪', username)
             res.render('index', { accDataFin, subTotals, userid, accData, username })
         })
         .catch(error => console.log(error))

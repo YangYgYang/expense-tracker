@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const ACCschema = require('../../models/accounting')
-const categorySchema = require('../../models/category')
+const Userschema = require('../../models/user')
 
 
 
@@ -33,11 +33,21 @@ router.delete('/:id', (req, res) => {
         .catch(error => console.log(error))
 })
 
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', async(req, res) => {
     let accountingID = req.params.id
+    let username = ''
+
     ACCschema.findOne({ _id: accountingID })
         .lean()
-        .then((accounting) => {
+        .then(async(accounting) => {
+            let userid = accounting.userId
+            await Userschema.findOne({ _id: userid })
+                .lean()
+                .then((user) => {
+                    username = user.name + "的"
+                    console.log(username)
+                })
+                .catch(error => console.log(error))
             dateValue = {
                 year: accounting.date.getFullYear(),
                 month: accounting.date.getMonth() + 1,
@@ -50,7 +60,7 @@ router.get('/:id/edit', (req, res) => {
                 dateValue.day = '0' + dateValue.day
             }
             accounting.date = `${dateValue.year}-${dateValue.month}-${dateValue.day}`
-            res.render('edit', accounting)
+            res.render('edit', { accounting, username })
         })
         .catch(error => console.log(error))
 })
