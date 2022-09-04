@@ -3,18 +3,18 @@ const router = express.Router()
 const ACCschema = require('../../models/accounting')
 const Userschema = require('../../models/user')
 
-router.get('/', (req, res) => {
+router.get('/', async(req, res) => {
     const userid = req.user.user_id
     const getAccounting = req.query
     let accDataFin = []
     let username = ''
-    Userschema.findOne({ _id: userid })
+    await Userschema.findOne({ _id: userid })
         .lean()
         .then((user) => {
-            username = user.name
+            username = user.name + "的"
         })
         // console.log('進入首頁後', userid)
-    ACCschema.find({ userId: userid })
+    await ACCschema.find({ userId: userid })
         .lean()
         .then((accData) => {
             console.log('到底有沒有東西', getAccounting)
@@ -34,6 +34,7 @@ router.get('/', (req, res) => {
                     day: acc.date.getDate()
                 }
             })
+            console.log('誰的記長笨哪', username)
             res.render('index', { accDataFin, subTotals, userid, accData, username })
         })
         .catch(error => console.log(error))
