@@ -1,9 +1,10 @@
 <div class="container-content">
     <div class="category ">
 
+
       <form method="get" >
       <select onchange="this.form.submit()" class="form-select" aria-label="Default select example" name="categoryId">
-          <option >不分類別</option>
+          <option>不分類別</option>
           <option value="1">家居物業</option>
           <option value="2">交通出行</option>
           <option value="3">休閒娛樂</option>
@@ -53,7 +54,7 @@
 <script>
     document.querySelectorAll('.form-select option')
     .forEach(e => { 
-        if(e.value == {{this.categoryId}})
+        if(e.value == {{this.categoryIdFin}})
         e.setAttribute('selected', 'selected') 
         })
 </script>

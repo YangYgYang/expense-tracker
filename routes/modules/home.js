@@ -8,6 +8,7 @@ router.get('/', async(req, res) => {
     const getAccounting = req.query
     let accDataFin = []
     let username = ''
+    const categoryIdFin = getAccounting.categoryId
     await Userschema.findOne({ _id: userid })
         .lean()
         .then((user) => {
@@ -33,7 +34,7 @@ router.get('/', async(req, res) => {
                     day: acc.date.getDate()
                 }
             })
-            res.render('index', { accDataFin, subTotals, userid, accData, username })
+            res.render('index', { accDataFin, subTotals, userid, accData, username,categoryIdFin })
         })
         .catch(error => console.log(error))
 })
