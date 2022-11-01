@@ -4,7 +4,7 @@
 
       <form method="get" >
       <select onchange="this.form.submit()" class="form-select" aria-label="Default select example" name="categoryId">
-          <option>不分類別</option>
+          <option value="0">不分類別</option>
           <option value="1">家居物業</option>
           <option value="2">交通出行</option>
           <option value="3">休閒娛樂</option>
@@ -28,6 +28,7 @@
               <div>
                   <span class="spend-all">
                       <span class="spend-date">
+                      <span class={{this.categoryIcon}}>{{this.categoryIconName}}</span>
                       <a>{{this.item}}</a>
                       <a>{{this.date.year}}-{{this.date.month}}-{{this.date.day}}</a>
                       </span>
