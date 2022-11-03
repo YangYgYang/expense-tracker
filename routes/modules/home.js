@@ -10,11 +10,11 @@ router.get('/', async(req, res) => {
     let username = ''
     const categoryIdFin = getAccounting.categoryId
     const CATEGORYICON = {
-        '1': {"icon":"material-symbols-outlined","name":"home"},
-        '2': {"icon":"material-symbols-outlined","name":"directions_car"},
-        '3': {"icon":"material-symbols-outlined","name":"local_mall"},
-        '4': {"icon":"material-symbols-outlined","name":"restaurant"},
-        '5': {"icon":"material-symbols-outlined","name":"finance_chip"}
+        '1': "home",
+        '2': "directions_car",
+        '3': "local_mall",
+        '4': "restaurant",
+        '5': "finance_chip"
       }
     await Userschema.findOne({ _id: userid })
         .lean()
@@ -41,13 +41,12 @@ router.get('/', async(req, res) => {
                     day: acc.date.getDate()
                 }
 
-            for(let key in CATEGORYICON){
-                if(acc.categoryId === key){
-                    acc.categoryIcon = CATEGORYICON[key].icon
-                    acc.categoryIconName = CATEGORYICON[key].name
-                    return
+                for(let key in CATEGORYICON){
+                    if(acc.categoryId === key){
+                        acc.categoryIconName = CATEGORYICON[key]
+                        break
+                    }
                 }
-            }
             })
             res.render('index', { accDataFin, subTotals, userid, accData, username,categoryIdFin,CATEGORYICON })
         })
