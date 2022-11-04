@@ -11,7 +11,6 @@ router.get('/create', (req, res) => {
 
 router.post('/create', (req, res) => {
     let getAccounting = req.body
-    console.log('印出帳本', getAccounting)
     getAccounting.userId = req.user.user_id
     ACCschema.create(getAccounting)
         .then(() => res.redirect('/'))

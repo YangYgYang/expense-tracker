@@ -1,13 +1,16 @@
 const mongoose = require('mongoose')
 const accountingSchema = require('../accounting')
 const userSchema = require('../user')
-const db = require('../../config/mongoose')
 const bcrypt = require('bcryptjs')
 
 //==========judge if is production mode
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
+
+mongoose.connect(process.env.EXPENCE_MONGODB_URI, { useNewUrlParser: true })
+const db = mongoose.connection
+
 
 const AccSeed = [{
     item: '防毒面具',
@@ -43,49 +46,42 @@ const AccSeed = [{
 
 const userSeeds = [{
         name: 'user1',
-        email: 'ttt@ttt.com',
-        password: '123',
+        email: 'root@root.com',
+        password: '12345678',
         __v: 0
     },
     {
         name: 'user2',
-        email: 'mail@mail.com',
+        email: 'root2@root.com',
         password: '12345678',
         __v: 0
     }
 ]
 
 
-
-
 db.once('open', () => {
-    userSeeds.map((SEED_USER) => {
+    const finUserSeeds = userSeeds.map((SEED_USER) => {
         //bcrypt同步寫法=> hash = bcrypt.hashSync(要加密的password, 加密係數)
         hash = bcrypt.hashSync(SEED_USER.password, 10)
         SEED_USER.password = hash
+        return SEED_USER
     })
-
-    userSchema.create(userSeeds)
-        .then((users) => {
-            // console.log('新增user之後', users)
+    console.log(finUserSeeds)
+    userSchema.create(finUserSeeds)
+        .then((user) => {
+            console.log('新增之後的',user)
             console.log('userSeeder is done!')
-            users.forEach((user) => {
-                if (user.name === 'user1') {
-                    for (let i = 0; i < 3; i++) {
-                        console.log('前面的Acc', AccSeed)
-                        AccSeed[i].userId = user._id
-                    }
-                } else if (user.name === 'user2') {
-                    for (let i = 3; i < 6; i++) {
-                        console.log('後面的', AccSeed)
-                        AccSeed[i].userId = user._id
-                    }
+            for(let i =0;i<AccSeed.length;i++){
+                if(i<3){
+                    AccSeed[i].userId = user[0]._id
+                }else{
+                    AccSeed[i].userId = user[1]._id
                 }
-            })
+            }
             accountingSchema.create(AccSeed)
                 .then(() => {
                     db.close()
-                    console.log('User1 is done!')
+                    console.log('accountingSeeder is done!')
                 })
                 .catch(err => console.log(err))
         })
