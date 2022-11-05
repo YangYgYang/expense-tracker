@@ -11,10 +11,10 @@ router.get('/', async(req, res) => {
     const categoryIdFin = getAccounting.categoryId
     const CATEGORYICON = {
         '1': "home",
-        '2': "directions_car",
-        '3': "local_mall",
-        '4': "restaurant",
-        '5': "finance_chip"
+        '2': "shuttle-van",
+        '3': "grin-beam",
+        '4': "utensils",
+        '5': "pen"
       }
     await Userschema.findOne({ _id: userid })
         .lean()
