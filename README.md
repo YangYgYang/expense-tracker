@@ -16,7 +16,7 @@
 <li>即可在 http://localhost:3000/ 執行專案</li>
 </ol>
 
-<h2>部署heroku</h2>
+<h2>線上試用</h2>
 <p>此專案部署至Heroku</p>
 <p><a href="https://vast-scrubland-49534.herokuapp.com/user/login">記帳本's</p>
 <p>測試帳號：root@root.com</br>密碼：12345678</p>
