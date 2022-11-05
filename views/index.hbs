@@ -26,15 +26,16 @@
           <div class="row">
             <div class="d-flex justify-content-between">
               <div>
-                  <span class="spend-all">
-                      <span class="spend-date">
-                      {{!-- <span class="material-symbols-outlined" style="font-size:50px;color: lightseagreen">{{this.categoryIconName}}</span> --}}
-                      <i class="fa-solid fa-{{this.categoryIconName}}" style="font-size:50px;color: lightseagreen"></i>
+                  <div class="spend-all">
+                    <div class="spend-left">
+                      <div class="spend-icon"><i class="fa-solid fa-{{this.categoryIconName}}" style="font-size:50px;color: lightseagreen"></i></div>
+                      <div class="spend-date">
                       <a>{{this.item}}</a>
                       <a>{{this.date.year}}-{{this.date.month}}-{{this.date.day}}</a>
-                      </span>
-                  </span>
-                  <span>${{this.subTotal}}</span>
+                      </div>
+                    </div>
+                    <div class="spend-right"><i>${{this.subTotal}}</i></div>
+                  </div>
               </div>
               <div>
               <a class="btn btn-success" href="/accounting/{{this._id}}/edit">Edit</a>

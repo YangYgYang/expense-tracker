@@ -157,7 +157,7 @@ table {
 }
 
 .accounting-form {
-    width: 30vw;
+    width: 50vw;
 }
 
 .create-btn {
@@ -169,3 +169,34 @@ table {
     flex-flow: column;
     align-items: center;
 }
+
+.spend-all{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 350px;
+    margin-right: 20px;
+}
+
+.spend-left{
+    display: flex;
+    flex-direction: row;
+}
+
+.spend-date{
+    display: flex;
+    flex-direction: column;
+    margin: 0 50px;
+}
+
+.spend-icon{
+    width: 30px;
+}
+
+/* .spend-right{
+    width: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+} */
