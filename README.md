@@ -17,6 +17,6 @@
 </ol>
 
 <h2>線上試用</h2>
-<p>此專案部署至Heroku</p>
+<p>此專案已部署至Heroku</p>
 <p><a href="https://vast-scrubland-49534.herokuapp.com/user/login">記帳本's</p>
 <p>測試帳號：root@root.com</br>密碼：12345678</p>
