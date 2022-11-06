@@ -14,31 +14,31 @@ const db = mongoose.connection
 
 const AccSeed = [{
     item: '防毒面具',
-    date: 2022 - 08 - 03,
+    date: 2022-08-03,
     categoryId: '2',
     subTotal: 1200,
     __v: 0
 }, {
     item: '酒',
-    date: 2022 - 09 - 02,
+    date: 2022-09-02,
     categoryId: '4',
     subTotal: 50,
     __v: 0
 }, {
     item: '握壽司',
-    date: 2022 - 08 - 03,
+    date: 2022-08-03,
     categoryId: '4',
     subTotal: 280,
     __v: 0
 }, {
     item: '太陽眼鏡',
-    date: 2022 - 09 - 02,
+    date: 2022-09-02,
     categoryId: '4',
     subTotal: 50,
     __v: 0
 }, {
     item: '髒抹布',
-    date: 2022 - 09 - 02,
+    date: 2022-09-02,
     categoryId: '4',
     subTotal: 50,
     __v: 0
