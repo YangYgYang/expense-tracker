@@ -1,3 +1,14 @@
+<style>
+  .list-group-item:nth-child(even){
+      background: #ffffff19;
+  }
+</style>
+<script>
+    function deleteBtn(id){
+      document.querySelector('.deleteBtn').setAttribute('action',`/accounting/${id}?_method=DELETE`)
+    }
+</script>
+
 <div class="container-content">
     <div class="category ">
 
@@ -28,7 +39,7 @@
               <div>
                   <div class="spend-all">
                     <div class="spend-left">
-                      <div class="spend-icon"><i class="fa-solid fa-{{this.categoryIconName}}" style="font-size:50px;color: rgb(228, 243, 242)"></i></div>
+                      <div class="spend-icon"><i class="fa-solid fa-{{this.categoryIconName}}" style="font-size:50px;color: rgb(34, 216, 204)"></i></div>
                       <div class="spend-date">
                       <a>{{this.item}}</a>
                       <a>{{this.date.year}}-{{this.date.month}}-{{this.date.day}}</a>
@@ -39,34 +50,11 @@
               </div>
               <div>
               <a class="btn btn-success" href="/accounting/{{this._id}}/edit">Edit</a>
-              <form action="/accounting/{{this._id}}?_method=DELETE" method="post" style="display: inline;">
-                <button type="button"  class="btn btn-danger deleteBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
-              </form>
+                <button type="button"  onclick="deleteBtn('{{this._id}}')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
               </div>
             </div>
           </div>
         </li>
-<!-- Modal start-->
-{{!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">WARNING</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        你確定要刪除這筆帳嗎？
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No!</button>
-          <form action="/accounting/{{this._id}}?_method=DELETE" method="post" style="display: inline;">
-             <button class="btn btn-danger" name="_method" type="submit">Yes,delete it!</button>
-          </form>
-      </div>
-    </div>
-  </div>
-</div> --}}
-<!-- Modal end-->
 {{/each}}        
       </ul>
     </div>
@@ -74,7 +62,7 @@
       <a class="btn btn-light mt-4" href="/accounting/create">新增支出</a>
     </div>
 </div>
-{{#each accDataFin}}
+
 <!-- Modal start-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -88,7 +76,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No!</button>
-          <form action="/accounting/{{this._id}}?_method=DELETE" method="post" style="display: inline;">
+          <form action="/accounting/{{this._id}}?_method=DELETE" method="post" style="display: inline;" class="deleteBtn">
              <button class="btn btn-danger" name="_method" type="submit">Yes,delete it!</button>
           </form>
       </div>
@@ -96,7 +84,6 @@
   </div>
 </div>
 <!-- Modal end-->
-{{/each}}
 
 
 <script>
@@ -105,7 +92,8 @@
         if(e.value == {{this.categoryIdFin}})
         e.setAttribute('selected', 'selected') 
         })
-    
+
 </script>
+
 
 
